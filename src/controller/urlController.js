@@ -9,12 +9,11 @@ const isValid = function(value){
     return true
 }
 
-const baseUrl = 'http://localhost:3000'
-
 const createUrl = async function(req,res){
   try{  
    let data=req.body 
     const longUrl = data.longUrl
+    const baseUrl = 'http://localhost:3000'
 
     // data is missing
    let keys=Object.keys(data)
@@ -29,10 +28,9 @@ if(!(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\
     return res.status(400).send({status:false, message: "please enter a valid URL"})
 
 //only longUrlfield is allowed
-if(keys.length>0){
 if(!(keys.length==1 && keys== 'longUrl'))
  return res.status(400).send({status:false, message: "only longUrlfield is allowed"})
-}
+
 
 
 //fetching data from redis
