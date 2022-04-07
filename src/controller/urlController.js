@@ -31,8 +31,6 @@ const createUrl = async function (req, res) {
         if (!(keys.length == 1 && keys == 'longUrl'))
             return res.status(400).send({ status: false, message: "only longUrlfield is allowed" })
 
-
-
         //fetching data from redis
         let cachedData = await redisService.GET_ASYNC(`${longUrl}`)
         if (cachedData) {
