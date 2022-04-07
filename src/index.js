@@ -2,8 +2,8 @@ const express = require('express');
 var bodyParser = require('body-parser');
 const route = require('./route/route.js');
 const app = express();
-
-
+//require('dotenv').config()
+//console.log(process.env.test)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -46,12 +46,14 @@ let cachedData = await redisService.GET_ASYNC(`${longUrl}`)
                 const checkRes = await urlModel.findOne({ longUrl: longUrl})
                if(checkRes){
                 const url123 = {longUrl:checkRes.longUrl,shortUrl:checkRes.shortUrl,urlCode:checkRes.urlCode}
+                console.log("mongoDb")
                 {return res.status(201).send({status:true,data:url123})}
                }
            const url1 = await urlModel.create(data)
            const url12 = {longUrl:longUrl,shortUrl:shortUrl,urlCode:urlCode}
-           await redisService.SET_ASYNC(`${url12.longUrl}`, JSON.stringify(url12)) 
-           await redisService.SET_ASYNC(`${url12.urlCode}`, url12.longUrl)
+           await redisService.SET_ASYNC(`${url12.longUrl}`, JSON.stringify(url12),'EX',60*60*24) 
+           
+           await redisService.SET_ASYNC(`${url12.urlCode}`, url12.longUrl,'EX',60*60*24)
            
           console.log("mongodb...")
                return res.status(201).send({status:true, data:url12})
