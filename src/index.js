@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const mongoose = require('mongoose')
 
 mongoose.connect("mongodb+srv://vpandey:qVLIgv7EqMycOrmr@cluster0.lvp0c.mongodb.net/group12Database?retryWrites=true&w=majority", { useNewUrlParser: true })
-    .then(() => console.log('mongodb running on 27017'))
+    .then(() => console.log('MongoDB is Connected Now'))
     .catch(err => console.log(err))
 
 app.use('/', route);
